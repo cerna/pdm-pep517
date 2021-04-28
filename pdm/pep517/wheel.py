@@ -147,7 +147,7 @@ class WheelBuilder(Builder):
         hash_digest = urlsafe_b64encode(hashsum.digest()).decode("ascii").rstrip("=")
 
         wheel.writestr(zi, b, compress_type=zipfile.ZIP_DEFLATED)
-        print(f" - Adding {rel_path}")
+        print(f" - Adding F{rel_path}")
         self._records.append((rel_path, hash_digest, str(len(b))))
 
     def _build(self, wheel):
@@ -169,7 +169,7 @@ class WheelBuilder(Builder):
         lib_dir = next(build_dir.glob("lib.*"), None)
         if not lib_dir:
             return
-        for pkg in lib_dir.glob("**/*"):
+        for pkg in lib_dir.glob("**/*.so"):
             if pkg.is_dir():
                 continue
 
@@ -195,7 +195,7 @@ class WheelBuilder(Builder):
         if os.sep != "/":
             # We always want to have /-separated paths in the zip file and in RECORD
             rel_path = rel_path.replace(os.sep, "/")
-        print(f" - Adding {rel_path}")
+        print(f" - Adding G{rel_path}")
         zinfo = zipfile.ZipInfo(rel_path)
 
         # Normalize permission bits to either 755 (executable) or 644

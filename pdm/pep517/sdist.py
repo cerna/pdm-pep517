@@ -72,7 +72,7 @@ class SdistBuilder(Builder):
                         arcname=os.path.join(tar_dir, str(relpath)),
                         recursive=False,
                     )
-                print(f" - Adding {relpath}")
+                print(f" - Adding A{relpath}")
 
             fd, temp_name = tempfile.mkstemp(prefix="pkg-info")
             pkg_info = self.format_pkginfo(False).encode("utf-8")
