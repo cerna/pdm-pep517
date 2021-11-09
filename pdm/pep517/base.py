@@ -272,6 +272,7 @@ class Builder:
             # and execute it.
             after.extend(
                 [
+                    f"CONFIG = {self.config_settings}"
                     "from {} import build\n".format(meta.build.split(".")[0]),
                     "build(setup_kwargs)\n",
                 ]
